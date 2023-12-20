@@ -100,7 +100,7 @@ DATABASES = {
         'PORT'     : '25060',
         'NAME'     : 'db',
         'PASSWORD' : 'AVNS_-DXgfpoOikxjKognYfT',
-        'USER' : 'db',
+        'USER'     : 'db',
         # 'sslmode'  : 'require'
     }
 }
