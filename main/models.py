@@ -1,3 +1,5 @@
+from builtins import print
+
 from django.db import models
 from account.models import User
 
@@ -42,13 +44,43 @@ class Task(models.Model):
         LOWEST = 'lowest', "Lowest"
 
     project = models.ForeignKey(Project, on_delete=models.CASCADE, null=True)
-    category = models.ForeignKey(TaskCategory, on_delete=models.SET_NULL, null=True)
+    category = models.ForeignKey(TaskCategory, on_delete=models.SET_NULL, null=True, blank=True)
     file = models.FileField(upload_to=None, max_length=100, blank=True, null=True)
     task_start_date = models.DateTimeField(null=True)
     task_end_date = models.DateTimeField(null=True)
-    users = models.ManyToManyField(User, blank=True)
     task_priority = models.CharField(max_length=200, choices=PriorityChoices.choices, default=PriorityChoices.MEDIUM)
     description = models.TextField(null=True)
 
     def __str__(self):
         return self.project.name
+
+
+class TaskProxy(Task):
+    class Meta:
+        proxy = True
+
+
+class AssignedPerson(models.Model):
+    task = models.ForeignKey(Task, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, blank=True, on_delete=models.CASCADE)
+    start_date = models.DateTimeField()
+    end_date = models.DateTimeField()
+    user_start_date = models.DateTimeField(null=True, blank=True)
+    user_end_date = models.DateTimeField(null=True, blank=True)
+
+    def __str__(self):
+        return self.user.username
+
+
+class AssignedPersonProxy(AssignedPerson):
+    class Meta:
+        proxy = True
+        app_label = 'main'
+        verbose_name = 'My Task'
+        verbose_name_plural = 'My Tasks'
+
+    def __str__(self):
+        return self.task.project.name
+
+
+
