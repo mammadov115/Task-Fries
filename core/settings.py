@@ -80,6 +80,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'core.wsgi.application'
 
+# Data-base
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
