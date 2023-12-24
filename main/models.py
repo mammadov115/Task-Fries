@@ -67,6 +67,7 @@ class AssignedPerson(models.Model):
     end_date = models.DateTimeField()
     user_start_date = models.DateTimeField(null=True, blank=True)
     user_end_date = models.DateTimeField(null=True, blank=True)
+    description = models.TextField(blank=True, null=True)
 
     def __str__(self):
         return self.user.username
