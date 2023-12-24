@@ -11,7 +11,6 @@ admin.site.register(TaskCategory)
 class AssignedPersonInline(admin.StackedInline):
     model = AssignedPerson
     extra = 1
-    readonly_fields = ['user_start_date', 'user_end_date']
 
     def get_queryset(self, request):
         qs = super().get_queryset(request)
@@ -22,7 +21,7 @@ class AssignedPersonInline(admin.StackedInline):
         if not request.user.is_superuser:
             return ['user', 'start_date', 'end_date', 'description']
         else:
-            return []
+            return ['user_start_date', 'user_end_date']
 
 
 @admin.register(Task)
