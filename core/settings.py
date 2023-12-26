@@ -83,25 +83,25 @@ WSGI_APPLICATION = 'core.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-if DEBUG:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': BASE_DIR / 'db.sqlite3',
-        }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'HOST': 'app-3465eba8-29fe-4256-926d-21d1e8f4e9db-do-user-13349374-0.c.db.ondigitalocean.com',
+        'PORT': '25060',
+        'NAME': 'db',
+        'PASSWORD': 'AVNS_-DXgfpoOikxjKognYfT',
+        'USER': 'db',
+        # 'sslmode'  : 'require'
     }
-else:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql_psycopg2',
-            'HOST': 'app-3465eba8-29fe-4256-926d-21d1e8f4e9db-do-user-13349374-0.c.db.ondigitalocean.com',
-            'PORT': '25060',
-            'NAME': 'db',
-            'PASSWORD': 'AVNS_-DXgfpoOikxjKognYfT',
-            'USER': 'db',
-            # 'sslmode'  : 'require'
-        }
-    }
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
